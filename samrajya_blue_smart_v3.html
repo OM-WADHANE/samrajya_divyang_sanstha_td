@@ -1,0 +1,535 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1565C0;--blue-dark:#0D47A1;--blue-mid:#1976D2;--blue-light:#42A5F5;
+  --blue-pale:#E3F2FD;--blue-pale2:#BBDEFB;
+  --navy:#0A2540;--navy2:#0D3060;
+  --accent:#29B6F6;--accent2:#0288D1;
+  --cream:#F4F8FF;--white:#FFFFFF;
+  --text-dark:#0A1929;--text-mid:#37474F;--text-light:#78909C;
+  --shadow:0 4px 24px rgba(13,71,161,0.13);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark)}
+.mr{font-family:'Tiro Devanagari Marathi',sans-serif}
+
+/* SMART NAV */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--navy);
+  border-bottom:3px solid var(--accent);
+  padding:0 1.5rem;height:62px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:transform 0.32s cubic-bezier(0.4,0,0.2,1),box-shadow 0.32s;
+  box-shadow:0 2px 20px rgba(10,37,64,0.45);
+}
+#navbar.hidden{transform:translateY(-100%)}
+#navbar.visible{transform:translateY(0)}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-img{
+  width:42px;height:42px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--accent);
+  background:white;flex-shrink:0;
+}
+.nav-name{font-size:13px;font-weight:700;color:white;font-family:'Tiro Devanagari Marathi',sans-serif;line-height:1.2}
+.nav-name-en{font-size:10px;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{
+  color:rgba(255,255,255,0.72);font-size:13px;font-weight:500;
+  padding:5px 11px;border-radius:6px;cursor:pointer;
+  border:none;background:none;transition:all 0.18s;font-family:'DM Sans',sans-serif;
+}
+.nav-link:hover,.nav-link.active{color:white;background:rgba(41,182,246,0.18)}
+.lang-toggle{
+  display:flex;background:rgba(255,255,255,0.08);
+  border-radius:7px;overflow:hidden;border:1px solid rgba(255,255,255,0.16);margin-left:8px;
+}
+.lang-btn{
+  padding:4px 11px;font-size:12px;font-weight:600;
+  cursor:pointer;border:none;transition:all 0.18s;
+  color:rgba(255,255,255,0.55);background:transparent;font-family:'DM Sans',sans-serif;
+}
+.lang-btn.act{background:var(--accent2);color:white}
+
+/* LEADERSHIP BANNER */
+.lbanner{
+  margin-top:62px;
+  background:linear-gradient(135deg,var(--navy2) 0%,var(--blue-mid) 100%);
+  padding:9px 1.5rem;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:5px 18px;border-bottom:2px solid var(--accent);
+}
+.lb-title{
+  font-size:10px;font-weight:700;color:var(--accent);
+  text-transform:uppercase;letter-spacing:1.5px;
+  border-right:1px solid rgba(255,255,255,0.18);
+  padding-right:14px;font-family:'DM Sans',sans-serif;
+}
+.lb-item{display:flex;align-items:center;gap:5px;font-size:13px;color:rgba(255,255,255,0.9)}
+.lb-role{
+  font-size:9px;font-weight:700;background:var(--blue-mid);color:white;
+  padding:2px 7px;border-radius:4px;font-family:'DM Sans',sans-serif;
+  text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0;
+  border:1px solid rgba(41,182,246,0.4);
+}
+
+/* HERO */
+.hero{
+  padding:3rem 1.5rem 2.5rem;
+  background:var(--cream);text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue-dark),var(--accent),var(--blue-light));
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 50%,rgba(21,101,192,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse at 85% 30%,rgba(41,182,246,0.06) 0%,transparent 60%);
+}
+.hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.hero-logo{
+  width:100px;height:100px;border-radius:50%;
+  object-fit:cover;border:4px solid var(--blue-pale2);
+  box-shadow:0 0 0 6px rgba(21,101,192,0.08);
+  margin-bottom:1.25rem;background:white;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-pale);border:1px solid rgba(21,101,192,0.2);
+  padding:5px 14px;border-radius:100px;
+  font-size:11px;font-weight:700;color:var(--blue);
+  margin-bottom:1rem;letter-spacing:0.5px;font-family:'DM Sans',sans-serif;text-transform:uppercase;
+}
+.hero-title{
+  font-family:'Tiro Devanagari Marathi',sans-serif;
+  font-size:clamp(1.8rem,4.5vw,2.8rem);
+  font-weight:400;line-height:1.2;color:var(--navy);margin-bottom:0.3rem;
+}
+.hero-sub{font-size:14px;color:var(--text-light);margin-bottom:1rem;font-family:'DM Sans',sans-serif}
+.hero-desc{
+  font-size:14px;color:var(--text-mid);line-height:1.75;
+  max-width:520px;margin:0 auto 1.5rem;
+  font-family:'Tiro Devanagari Marathi',sans-serif;
+}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-p{
+  background:var(--blue);color:white;padding:10px 24px;border-radius:7px;
+  font-size:13px;font-weight:600;border:2px solid var(--blue);
+  cursor:pointer;transition:all 0.18s;font-family:'DM Sans',sans-serif;
+}
+.btn-p:hover{background:var(--blue-dark)}
+.btn-o{
+  background:transparent;color:var(--blue);padding:10px 24px;border-radius:7px;
+  font-size:13px;font-weight:600;border:2px solid var(--blue);
+  cursor:pointer;transition:all 0.18s;font-family:'DM Sans',sans-serif;
+}
+.btn-o:hover{background:var(--blue-pale)}
+.hero-stats{
+  display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;
+  margin-top:2rem;padding-top:1.5rem;
+  border-top:1px solid rgba(21,101,192,0.12);
+}
+.stat .num{font-size:1.75rem;font-weight:700;color:var(--blue);line-height:1}
+.stat .lbl{font-size:11px;color:var(--text-light);margin-top:3px;font-weight:500}
+
+/* SECTIONS */
+.sec{padding:2.5rem 1.5rem;max-width:960px;margin:0 auto}
+.sec-bg-navy{background:var(--navy);padding:2.5rem 1.5rem}
+.sec-bg-blue{background:var(--blue-pale);padding:2.5rem 1.5rem}
+.sec-inner{max-width:960px;margin:0 auto}
+.sec-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:5px;font-family:'DM Sans',sans-serif}
+.sec-tag-lt{color:var(--accent)}
+.sec-title{font-family:'Tiro Devanagari Marathi',sans-serif;font-size:clamp(1.4rem,2.8vw,1.9rem);color:var(--navy);font-weight:400;margin-bottom:7px;line-height:1.3}
+.sec-title-lt{color:white}
+.sec-desc{font-size:14px;color:var(--text-mid);line-height:1.75;max-width:560px;font-family:'Tiro Devanagari Marathi',sans-serif}
+.sec-desc-lt{color:rgba(255,255,255,0.6)}
+.divider{width:48px;height:3px;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:2px;margin:7px 0 14px}
+.divider-lt{background:linear-gradient(90deg,var(--accent),var(--blue-light))}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-top:1.5rem}
+.about-text p{font-size:14px;color:var(--text-mid);line-height:1.8;font-family:'Tiro Devanagari Marathi',sans-serif;margin-bottom:1rem}
+.about-panel{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--blue-mid) 100%);
+  border-radius:14px;padding:1.75rem;color:white;
+}
+.av-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.av-item:last-child{border:none;margin:0;padding:0}
+.av-icon{width:34px;height:34px;border-radius:7px;background:rgba(41,182,246,0.2);border:1px solid rgba(41,182,246,0.35);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.av-h{font-size:13px;font-weight:600;margin-bottom:2px;font-family:'Tiro Devanagari Marathi',sans-serif}
+.av-p{font-size:12px;opacity:0.65;font-family:'Tiro Devanagari Marathi',sans-serif;line-height:1.5}
+
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:1.5rem}
+.srv-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:1.25rem;transition:all 0.22s}
+.srv-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(41,182,246,0.4);transform:translateY(-2px)}
+.srv-icon{width:38px;height:38px;border-radius:8px;background:rgba(41,182,246,0.15);border:1px solid rgba(41,182,246,0.3);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:10px}
+.srv-t{font-size:14px;font-weight:600;color:white;margin-bottom:4px;font-family:'Tiro Devanagari Marathi',sans-serif}
+.srv-d{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.55;font-family:'Tiro Devanagari Marathi',sans-serif}
+
+/* DOCUMENTS */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:1.5rem}
+.doc-card{
+  background:white;border:1px solid rgba(21,101,192,0.12);border-radius:12px;
+  padding:1.25rem;display:flex;flex-direction:column;gap:10px;
+  transition:all 0.22s;position:relative;overflow:hidden;
+}
+.doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--accent))}
+.doc-card:hover{box-shadow:0 4px 20px rgba(21,101,192,0.13);transform:translateY(-2px)}
+.doc-icon{font-size:24px}
+.doc-t{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;font-family:'Tiro Devanagari Marathi',sans-serif}
+.doc-s{font-size:11px;color:var(--text-light);font-family:'DM Sans',sans-serif}
+.doc-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--blue);color:white;
+  padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;
+  border:none;cursor:pointer;transition:all 0.18s;
+  text-decoration:none;font-family:'DM Sans',sans-serif;width:fit-content;margin-top:auto;
+}
+.doc-btn:hover{background:var(--blue-dark)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1.5rem}
+.contact-cards{display:flex;flex-direction:column;gap:10px}
+.cc{background:white;border:1px solid rgba(21,101,192,0.1);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:10px}
+.cc-icon{width:36px;height:36px;border-radius:7px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cc-lbl{font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;font-family:'DM Sans',sans-serif}
+.cc-val{font-size:13px;color:var(--text-dark);margin-top:2px;line-height:1.55;font-family:'Tiro Devanagari Marathi',sans-serif}
+.cc-val a{color:var(--blue);text-decoration:none}
+.cc-val a:hover{text-decoration:underline}
+.cc-val .reg{font-family:'DM Sans',sans-serif;font-weight:700;color:var(--blue-dark)}
+.cform{background:white;border:1px solid rgba(21,101,192,0.12);border-radius:12px;padding:1.5rem;box-shadow:var(--shadow)}
+.cform-t{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:1rem;font-family:'Tiro Devanagari Marathi',sans-serif}
+.fg{margin-bottom:11px}
+.flbl{font-size:11px;font-weight:600;color:var(--text-mid);display:block;margin-bottom:4px;font-family:'DM Sans',sans-serif}
+.finp,.ftxt{
+  width:100%;padding:8px 11px;border-radius:6px;
+  border:1px solid rgba(21,101,192,0.18);font-size:13px;
+  font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);
+  transition:border-color 0.18s;outline:none;
+}
+.finp:focus,.ftxt:focus{border-color:var(--blue);background:white}
+.ftxt{min-height:80px;resize:vertical}
+.fsub{
+  background:var(--blue);color:white;padding:9px 20px;
+  border-radius:6px;border:none;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.18s;width:100%;
+}
+.fsub:hover{background:var(--blue-dark)}
+.form-msg{font-size:12px;margin-top:8px;display:none;color:var(--blue);font-family:'DM Sans',sans-serif}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:4px solid var(--accent);padding:2rem 1.5rem 1.25rem}
+.foot-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:start}
+.foot-brand h3{font-size:16px;font-weight:700;color:white;font-family:'Tiro Devanagari Marathi',sans-serif}
+.foot-brand p{font-size:12px;color:rgba(255,255,255,0.42);margin-top:5px;line-height:1.65;font-family:'DM Sans',sans-serif}
+.foot-links h4{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;font-family:'DM Sans',sans-serif}
+.foot-links ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.foot-links li{font-size:13px;color:rgba(255,255,255,0.52);cursor:pointer;transition:color 0.18s}
+.foot-links li:hover{color:white}
+.foot-bottom{max-width:960px;margin:1.5rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.foot-copy{font-size:11px;color:rgba(255,255,255,0.32);font-family:'DM Sans',sans-serif}
+.foot-dev{font-size:11px;font-family:'DM Sans',sans-serif;color:rgba(255,255,255,0.4)}
+.foot-dev a{color:var(--accent);font-weight:600;text-decoration:none}
+.foot-dev a:hover{text-decoration:underline}
+.foot-logo{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid rgba(41,182,246,0.4);margin-bottom:10px;background:white}
+
+/* SCROLL TARGET */
+.st{scroll-margin-top:70px}
+
+@media(max-width:700px){
+  .about-grid,.contact-grid,.foot-inner{grid-template-columns:1fr}
+  .nav-links .nav-link{display:none}
+  .lbanner{flex-direction:column;text-align:center}
+  .lb-title{border-right:none;padding-right:0;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:6px;width:100%;text-align:center}
+  .foot-bottom{flex-direction:column;text-align:center}
+  #navbar{padding:0 1rem}
+}
+</style>
+
+<div id="app"></div>
+
+<script>
+const LOGO = '/mnt/user-data/uploads/WhatsApp_Image_2026-03-21_at_6_44_08_PM.jpeg';
+
+const T = {
+  mr:{
+    nav:{home:'मुखपृष्ठ',about:'संस्थेबद्दल',services:'सेवा',docs:'दस्तऐवज',contact:'संपर्क'},
+    banner:{title:'संस्थेचे पदाधिकारी',pr:'अध्यक्ष',tr:'खजिनदार',sc:'सचिव',
+      pn:'सुधाकर नंदवरम',tn:'अविनाश ज्ञानदेव दोरगे',sn:'किशोर कुलकर्णी'},
+    hero:{badge:'सेवा • समता • सन्मान',title:'सम्राज्य दिव्यांग संस्था',sub:'Samrajya Divyang Sanstha',
+      desc:'दिव्यांग व्यक्तींच्या सक्षमीकरणासाठी कार्यरत एक समर्पित संस्था. आम्ही समान संधी, सम्मान आणि स्वावलंबन यासाठी प्रतिबद्ध आहोत.',
+      b1:'अधिक जाणून घ्या',b2:'दस्तऐवज पहा',s1:'वर्षे',s2:'सदस्य',s3:'उपक्रम'},
+    about:{tag:'आमच्याबद्दल',title:'आमची ओळख आणि उद्देश',
+      desc:'सम्राज्य दिव्यांग संस्था ही दिव्यांग व्यक्तींच्या कल्याणासाठी, त्यांच्या हक्कांच्या संरक्षणासाठी आणि सामाजिक एकात्मतेसाठी निरंतर कार्य करणारी संस्था आहे.',
+      i1:'🎯',i1t:'आमचे ध्येय',i1d:'दिव्यांग व्यक्तींना समाजात समान दर्जा मिळवून देणे.',
+      i2:'🌱',i2t:'आमचे कार्य',i2d:'शासकीय योजना, प्रशिक्षण व सहाय्याद्वारे जीवनमान सुधारणे.',
+      i3:'⚖️',i3t:'आमचे मूल्य',i3d:'पारदर्शकता, सेवा आणि सामाजिक न्याय.'},
+    services:{tag:'सेवा',title:'आम्ही काय करतो',desc:'आम्ही दिव्यांग व्यक्तींना विविध स्तरांवर मदत करतो.',
+      s:[{i:'📋',t:'नोंदणी सहाय्य',d:'दिव्यांग प्रमाणपत्र व शासकीय नोंदणी मार्गदर्शन'},
+         {i:'💼',t:'रोजगार मार्गदर्शन',d:'व्यावसायिक प्रशिक्षण व नोकरी संधी'},
+         {i:'📚',t:'शैक्षणिक सहाय्य',d:'शिष्यवृत्ती व शैक्षणिक कार्यक्रम'},
+         {i:'⚖️',t:'हक्क जागृती',d:'कायदेशीर हक्कांची माहिती'},
+         {i:'🏥',t:'आरोग्य सेवा',d:'वैद्यकीय मदत व पुनर्वसन'},
+         {i:'🤝',t:'समाज एकात्मता',d:'सांस्कृतिक कार्यक्रम व सहभाग'}]},
+    docs:{tag:'दस्तऐवज',title:'महत्त्वाचे दस्तऐवज',desc:'खालील दस्तऐवज उघडण्यासाठी बटणावर क्लिक करा.',
+      d:[{ic:'📝',t:'सभासद नोंदणी फॉर्म',s:'Membership Registration Form',l:'https://drive.google.com/file/d/1MMw97JNsmzhb6kUbUuWrU3CU5t_pX_L-/view?usp=drive_link'},
+         {ic:'🖨️',t:'लेटर हेड',s:'Official Letter Head',l:'https://drive.google.com/file/d/1pzLYbh3bOu5fqu8rfu5o-vGLPjLaLb-I/view?usp=drive_link'},
+         {ic:'🧾',t:'पावती / सभासद शुल्क पावती',s:'Membership Fee Receipt',l:'https://drive.google.com/file/d/1SYx2oHzG2mriCyFSBKrMF6tjxSZqdWM2/view?usp=drive_link'}],
+      btn:'उघडा ↗'},
+    contact:{tag:'संपर्क',title:'आमच्याशी संपर्क साधा',desc:'आपल्या प्रश्नांसाठी किंवा अधिक माहितीसाठी संपर्क करा.',
+      a:'पत्ता',av:'के. ऑफ 4851, सुधाकर नंदवरम,\nसंभाजी नगर, मराठशाळे मागे,\nतळेगाव दाभाडे, ता. मावळ,\nजि. पुणे – 410506',
+      r:'नोंदणी क्र.',rv:'Pune/0001459/2023',
+      p:'दूरध्वनी',pv:'9561836678',
+      e:'ई-मेल',ev:'samrajyawelfare@gmail.com',
+      ft:'संदेश पाठवा',fn:'आपले नाव',fe:'ईमेल पत्ता',fm:'आपला संदेश',fs:'पाठवा',
+      sent:'संदेश यशस्वीरीत्या पाठवला! धन्यवाद.'},
+    footer:{copy:'© 2026 सम्राज्य दिव्यांग संस्था. सर्व हक्क राखीव.',
+      lh:'त्वरित दुवे',ll:['मुखपृष्ठ','संस्थेबद्दल','सेवा','दस्तऐवज','संपर्क']}
+  },
+  en:{
+    nav:{home:'Home',about:'About',services:'Services',docs:'Documents',contact:'Contact'},
+    banner:{title:'Organization Leadership',pr:'President',tr:'Treasurer',sc:'Secretary',
+      pn:'Sudhakar Nandavaram',tn:'Avinash Dnyandev Dorge',sn:'Kishor Kulkarni'},
+    hero:{badge:'Service • Equality • Dignity',title:'Samrajya Divyang Sanstha',sub:'सम्राज्य दिव्यांग संस्था',
+      desc:'A dedicated organization working for the empowerment of persons with disabilities. Committed to equal opportunities, dignity, and self-reliance.',
+      b1:'Learn More',b2:'View Documents',s1:'Years',s2:'Members',s3:'Initiatives'},
+    about:{tag:'About Us',title:'Our Identity & Purpose',
+      desc:'Samrajya Divyang Sanstha continuously works for the welfare of persons with disabilities, protection of their rights, and social integration.',
+      i1:'🎯',i1t:'Our Mission',i1d:'To ensure equal status for persons with disabilities in society.',
+      i2:'🌱',i2t:'Our Work',i2d:'Improving livelihoods through government schemes, training and support.',
+      i3:'⚖️',i3t:'Our Values',i3d:'Transparency, service, and social justice.'},
+    services:{tag:'Services',title:'What We Do',desc:'We support persons with disabilities at various levels.',
+      s:[{i:'📋',t:'Registration Assistance',d:'Disability certificate & govt. registration guidance'},
+         {i:'💼',t:'Employment Guidance',d:'Vocational training & job opportunities'},
+         {i:'📚',t:'Educational Support',d:'Scholarships & educational programs'},
+         {i:'⚖️',t:'Rights Awareness',d:'Legal rights information'},
+         {i:'🏥',t:'Health Services',d:'Medical aid & rehabilitation'},
+         {i:'🤝',t:'Social Integration',d:'Cultural programs & participation'}]},
+    docs:{tag:'Documents',title:'Important Documents',desc:'Click the button to open any document.',
+      d:[{ic:'📝',t:'Membership Form',s:'सभासद नोंदणी फॉर्म',l:'https://drive.google.com/file/d/1MMw97JNsmzhb6kUbUuWrU3CU5t_pX_L-/view?usp=drive_link'},
+         {ic:'🖨️',t:'Letter Head',s:'लेटर हेड',l:'https://drive.google.com/file/d/1pzLYbh3bOu5fqu8rfu5o-vGLPjLaLb-I/view?usp=drive_link'},
+         {ic:'🧾',t:'Membership Fee Receipt',s:'पावती / सभासद शुल्क पावती',l:'https://drive.google.com/file/d/1SYx2oHzG2mriCyFSBKrMF6tjxSZqdWM2/view?usp=drive_link'}],
+      btn:'Open ↗'},
+    contact:{tag:'Contact',title:'Get In Touch',desc:'Contact us for your queries or for more information.',
+      a:'Address',av:'K. Off 4851, Sudhakar Nandavaram,\nSambhaji Nagar, Behind Maratha Shala,\nTalegaon Dabhade, Ta. Maval,\nDist. Pune – 410506',
+      r:'Registration No.',rv:'Pune/0001459/2023',
+      p:'Phone',pv:'9561836678',
+      e:'Email',ev:'samrajyawelfare@gmail.com',
+      ft:'Send a Message',fn:'Your Name',fe:'Email Address',fm:'Your Message',fs:'Send Message',
+      sent:'Message sent successfully! Thank you.'},
+    footer:{copy:'© 2026 Samrajya Divyang Sanstha. All rights reserved.',
+      lh:'Quick Links',ll:['Home','About','Services','Documents','Contact']}
+  }
+};
+
+const ids=['home','about','services','docs','contact'];
+let lang='mr';
+
+function go(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+function sendMail(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const msg=document.getElementById('f-msg').value.trim();
+  const l=T[lang];
+  if(!name||!msg){alert(lang==='mr'?'कृपया नाव आणि संदेश भरा.':'Please fill your name and message.');return;}
+  const subject=encodeURIComponent((lang==='mr'?'संस्थेकडून संदेश: ':'Message from website: ')+name);
+  const body=encodeURIComponent((lang==='mr'?'नाव: ':'Name: ')+name+'\n'+(lang==='mr'?'ईमेल: ':'Email: ')+email+'\n\n'+(lang==='mr'?'संदेश:\n':'Message:\n')+msg);
+  window.open('mailto:samrajyawelfare@gmail.com?subject='+subject+'&body='+body,'_blank');
+  const m=document.getElementById('form-msg');
+  m.style.display='block';m.textContent=l.contact.sent;
+  setTimeout(()=>{m.style.display='none'},4000);
+}
+
+function render(){
+  const l=T[lang];
+  const m=lang==='mr'?'mr':'';
+  document.getElementById('app').innerHTML=`
+<nav id="navbar" class="visible">
+  <div class="nav-brand">
+    <img class="nav-logo-img" src="${LOGO}" alt="Logo" onerror="this.style.display='none'"/>
+    <div>
+      <div class="nav-name">सम्राज्य दिव्यांग संस्था</div>
+      <div class="nav-name-en">Samrajya Divyang Sanstha</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    ${ids.map((id,i)=>`<button class="nav-link" onclick="go('${id}')">${Object.values(l.nav)[i]}</button>`).join('')}
+    <div class="lang-toggle">
+      <button class="lang-btn ${lang==='mr'?'act':''}" onclick="setL('mr')">मर</button>
+      <button class="lang-btn ${lang==='en'?'act':''}" onclick="setL('en')">EN</button>
+    </div>
+  </div>
+  <div class="lang-toggle" style="display:flex">
+    <button class="lang-btn ${lang==='mr'?'act':''}" onclick="setL('mr')">मर</button>
+    <button class="lang-btn ${lang==='en'?'act':''}" onclick="setL('en')">EN</button>
+  </div>
+</nav>
+
+<div class="lbanner">
+  <div class="lb-title">${l.banner.title}</div>
+  <div class="lb-item"><span class="lb-role">${l.banner.pr}</span><span class="${m}">${l.banner.pn}</span></div>
+  <div class="lb-item"><span class="lb-role">${l.banner.tr}</span><span class="${m}">${l.banner.tn}</span></div>
+  <div class="lb-item"><span class="lb-role">${l.banner.sc}</span><span class="${m}">${l.banner.sn}</span></div>
+</div>
+
+<div id="home" class="st">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <img class="hero-logo" src="${LOGO}" alt="Samrajya Divyang Sanstha Logo" onerror="this.style.display='none'"/>
+      <div class="hero-badge">${l.hero.badge}</div>
+      <h1 class="hero-title ${m}">${l.hero.title}</h1>
+      <p class="hero-sub">${l.hero.sub}</p>
+      <p class="hero-desc ${m}">${l.hero.desc}</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="go('about')">${l.hero.b1}</button>
+        <button class="btn-o" onclick="go('docs')">${l.hero.b2}</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">10+</div><div class="lbl">${l.hero.s1}</div></div>
+        <div class="stat"><div class="num">500+</div><div class="lbl">${l.hero.s2}</div></div>
+        <div class="stat"><div class="num">50+</div><div class="lbl">${l.hero.s3}</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="about" class="st">
+  <div class="sec">
+    <span class="sec-tag">${l.about.tag}</span>
+    <h2 class="sec-title ${m}">${l.about.title}</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="${m}">${l.about.desc}</p>
+        <p class="${m}" style="font-size:14px;color:var(--text-mid);line-height:1.8">तळेगाव दाभाडे, ता. मावळ, जि. पुणे येथे कार्यरत असलेली ही संस्था दिव्यांग व्यक्तींसाठी विविध उपक्रम राबवते आणि शासकीय योजनांची माहिती देते.</p>
+      </div>
+      <div class="about-panel">
+        <div class="av-item"><div class="av-icon">${l.about.i1}</div><div><div class="av-h ${m}">${l.about.i1t}</div><div class="av-p ${m}">${l.about.i1d}</div></div></div>
+        <div class="av-item"><div class="av-icon">${l.about.i2}</div><div><div class="av-h ${m}">${l.about.i2t}</div><div class="av-p ${m}">${l.about.i2d}</div></div></div>
+        <div class="av-item"><div class="av-icon">${l.about.i3}</div><div><div class="av-h ${m}">${l.about.i3t}</div><div class="av-p ${m}">${l.about.i3d}</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="services" class="st">
+  <div class="sec-bg-navy">
+    <div class="sec-inner">
+      <span class="sec-tag sec-tag-lt">${l.services.tag}</span>
+      <h2 class="sec-title sec-title-lt ${m}">${l.services.title}</h2>
+      <div class="divider divider-lt"></div>
+      <p class="sec-desc sec-desc-lt ${m}">${l.services.desc}</p>
+      <div class="srv-grid">
+        ${l.services.s.map(s=>`<div class="srv-card"><div class="srv-icon">${s.i}</div><div class="srv-t ${m}">${s.t}</div><div class="srv-d ${m}">${s.d}</div></div>`).join('')}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="docs" class="st">
+  <div class="sec-bg-blue">
+    <div class="sec-inner">
+      <span class="sec-tag">${l.docs.tag}</span>
+      <h2 class="sec-title ${m}">${l.docs.title}</h2>
+      <div class="divider"></div>
+      <p class="sec-desc ${m}">${l.docs.desc}</p>
+      <div class="doc-grid">
+        ${l.docs.d.map(d=>`<div class="doc-card"><div class="doc-icon">${d.ic}</div><div class="doc-t ${m}">${d.t}</div><div class="doc-s">${d.s}</div><a href="${d.l}" target="_blank" rel="noopener" class="doc-btn">${l.docs.btn}</a></div>`).join('')}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="st">
+  <div class="sec">
+    <span class="sec-tag">${l.contact.tag}</span>
+    <h2 class="sec-title ${m}">${l.contact.title}</h2>
+    <div class="divider"></div>
+    <p class="sec-desc ${m}" style="margin-bottom:1.5rem">${l.contact.desc}</p>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="cc">
+          <div class="cc-icon">📍</div>
+          <div>
+            <div class="cc-lbl">${l.contact.a}</div>
+            <div class="cc-val ${m}">${l.contact.av.replace(/\n/g,'<br/>')}</div>
+          </div>
+        </div>
+        <div class="cc">
+          <div class="cc-icon">🏛️</div>
+          <div>
+            <div class="cc-lbl">${l.contact.r}</div>
+            <div class="cc-val"><span class="reg">${l.contact.rv}</span></div>
+          </div>
+        </div>
+        <div class="cc">
+          <div class="cc-icon">📞</div>
+          <div>
+            <div class="cc-lbl">${l.contact.p}</div>
+            <div class="cc-val"><a href="tel:+91${l.contact.pv}">${l.contact.pv}</a></div>
+          </div>
+        </div>
+        <div class="cc">
+          <div class="cc-icon">✉️</div>
+          <div>
+            <div class="cc-lbl">${l.contact.e}</div>
+            <div class="cc-val"><a href="mailto:${l.contact.ev}">${l.contact.ev}</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="cform">
+        <div class="cform-t ${m}">${l.contact.ft}</div>
+        <div class="fg"><label class="flbl">${l.contact.fn}</label><input id="f-name" class="finp" type="text" placeholder="${l.contact.fn}"/></div>
+        <div class="fg"><label class="flbl">${l.contact.fe}</label><input id="f-email" class="finp" type="email" placeholder="${l.contact.fe}"/></div>
+        <div class="fg"><label class="flbl">${l.contact.fm}</label><textarea id="f-msg" class="ftxt" placeholder="${l.contact.fm}"></textarea></div>
+        <button class="fsub" onclick="sendMail()">${l.contact.fs}</button>
+        <div id="form-msg" class="form-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <img class="foot-logo" src="${LOGO}" alt="Logo" onerror="this.style.display='none'"/>
+      <h3>सम्राज्य दिव्यांग संस्था</h3>
+      <p>Samrajya Divyang Sanstha<br/>तळेगाव दाभाडे, ता. मावळ, जि. पुणे – 410506<br/>Reg. No: Pune/0001459/2023<br/>samrajyawelfare@gmail.com</p>
+    </div>
+    <div class="foot-links">
+      <h4>${l.footer.lh}</h4>
+      <ul>${l.footer.ll.map((lk,i)=>`<li onclick="go('${ids[i]}')">${lk}</li>`).join('')}</ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="foot-copy ${m}">${l.footer.copy}</span>
+    <span class="foot-dev">Developed with ❤️ in India by <a href="https://omwdev.netlify.app/" target="_blank" rel="noopener">OM WADHANE</a></span>
+  </div>
+</footer>
+`;
+  initScroll();
+}
+
+function setL(l){lang=l;render();}
+
+function initScroll(){
+  let lastY=window.scrollY;
+  window.onscroll=()=>{
+    const nav=document.getElementById('navbar');
+    if(!nav)return;
+    const y=window.scrollY;
+    if(y>lastY&&y>80){nav.classList.add('hidden');nav.classList.remove('visible')}
+    else{nav.classList.remove('hidden');nav.classList.add('visible')}
+    lastY=y;
+  };
+}
+
+render();
+</script>
